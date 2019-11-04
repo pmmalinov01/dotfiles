@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.box_version = "20191030.0.0"
+  config.vm.provider :virtualbox do |vb|    
+    vb.name = "generic"
+    vb.memory = 4000
+    vb.cpus = 4
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]    
+  end
+  #config.ssh.username = 'ubuntu'
+  # config.ssh.password = 'vagrant'
+  config.ssh.insert_key = 'true'
+  #config.vm.provision :shell, privileged: true, inline: "echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf > /dev/null"
+  config.vm.provision :shell, privileged: true, inline: "cat /etc/resolv.conf"
+  #config.vm.provision :shell, privileged: true, inline: "systemctl restart networking"
+  config.vm.provision :shell, privileged: true, inline: "apt-get -y update && apt -y upgrade"
+  config.vm.provision :shell, privileged: true, inline: "apt-get -y install python3-pip"
+  config.vm.provision :shell, privileged: true, inline: "apt-get -y install tmux"
+  config.vm.provision "shell", inline: "mkdir -p ~/.aws"
+  config.vm.provision "file", source: "~/.aws/credentials", destination: "~/.aws/credentials"  
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"  
+  
+  ############################################################
+  # Oh My ZSH Install section
+
+  # Install git and zsh prerequisites 
+  config.vm.provision :shell, inline: "apt-get -y install git"
+  config.vm.provision :shell, inline: "apt-get -y install zsh"
+
+  # Clone Oh My Zsh from the git repo
+  config.vm.provision :shell, privileged: false,
+    inline: "git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
+
+  # Copy in the default .zshrc config file
+  config.vm.provision :shell, privileged: false,
+    inline: "cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc"
+
+  # Change the vagrant user's shell to use zsh
+  config.vm.provision :shell,  privileged: true, inline: "chsh -s /bin/zsh vagrant"
+  config.vm.provision :shell,  privileged: true, inline: "sed -i '/plugins=*/iZSH_DISABLE_COMPFIX=true' /home/vagrant/.zshrc"
+  config.vm.provision :shell,  privileged: true, inline: "sudo ln -s /home/vagrant/.oh-my-zsh /root/.oh-my-zsh"
+  config.vm.provision :shell,  privileged: true, inline: "sudo ln -s /home/vagrant/.zshrc /root/.zshrc"
+  config.vm.provision :shell,  privileged: true, inline: "chsh -s /bin/zsh root"
+  config.vm.provision :shell, path: "scripts/install.sh"
+
+  ############################################################
+end
