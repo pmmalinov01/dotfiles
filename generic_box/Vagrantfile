@@ -22,8 +22,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, privileged: true, inline: "apt-get -y install python3-pip"
   config.vm.provision :shell, privileged: true, inline: "apt-get -y install tmux"
   config.vm.provision "shell", inline: "mkdir -p ~/.aws"
-  config.vm.provision "file", source: "~/.aws/credentials", destination: "~/.aws/credentials"  
-  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"  
+  config.vm.provision "file", source: "~/.aws/credentials", destination: "/root/.aws/credentials"  
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "/root/.ssh/id_rsa"  
   
   ############################################################
   # Oh My ZSH Install section

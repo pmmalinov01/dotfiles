@@ -162,6 +162,7 @@ set_ssh_and_git(){
     systemctl restart ssh
 
     eval `ssh-agent`
+    git config --global core.autocrlf false
 
     ssh-add /root/.ssh/id_rsa
     ssh-keyscan  bitbucket.org >> ~/.ssh/known_hosts
