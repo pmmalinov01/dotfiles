@@ -52,76 +52,76 @@ vundle_install() {
     pwd
     ls -la
     cat << EOF > /root/.vimrc
-    set encoding=utf-8
-    set nocompatible              " be iMproved, required
-    filetype off                  " required
+set encoding=utf-8
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-    " set the runtime path to include Vundle and initialize
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-    " alternatively, pass a path where Vundle should install plugins
-    "call vundle#begin('~/some/path/here')
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-    " The following are examples of different formats supported.
-    " Keep Plugin commands between vundle#begin/end.
-    " plugin on GitHub repo
-    Plugin 'tpope/vim-fugitive'
-    " plugin from http://vim-scripts.org/vim/scripts.html
-    " Plugin 'L9'
-    " Git plugin not hosted on GitHub
-    Plugin 'git://git.wincent.com/command-t.git'
-    Plugin 'vim-scripts/indentpython.vim'
-    Plugin 'davidhalter/jedi-vim'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'davidhalter/jedi-vim'
 
-    " The sparkup vim script is in a subdirectory of this repo called vim.
-    " Pass the path to set the runtimepath properly.
-    Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-    " Install L9 and avoid a Naming conflict if you've already installed a
-    " different version somewhere else.
-    " Plugin 'ascenator/L9', {'name': 'newL9'}
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
 
-    " All of your Plugins must be added before the following line
-    call vundle#end()            " required
-    filetype plugin indent on    " required
-    " To ignore plugin indent changes, instead use:
-    "filetype plugin on
-    "
-    " Brief help
-    " :PluginList       - lists configured plugins
-    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-    "
-    " see :h vundle for more details or wiki for FAQ
-    " Put your non-Plugin stuff after this line
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 
-    " Remove newbie crutches in Command Mode
-    cnoremap <Down> <Nop>
-    cnoremap <Left> <Nop>
-    cnoremap <Right> <Nop>
-    cnoremap <Up> <Nop>
+" Remove newbie crutches in Command Mode
+cnoremap <Down> <Nop>
+cnoremap <Left> <Nop>
+cnoremap <Right> <Nop>
+cnoremap <Up> <Nop>
 
-    " Remove newbie crutches in Insert Mode
-    inoremap <Down> <Nop>
-    inoremap <Left> <Nop>
-    inoremap <Right> <Nop>
-    inoremap <Up> <Nop>
+" Remove newbie crutches in Insert Mode
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
 
-    " Remove newbie crutches in Normal Mode
-    nnoremap <Down> <Nop>
-    nnoremap <Left> <Nop>
-    nnoremap <Right> <Nop>
-    nnoremap <Up> <Nop>
+" Remove newbie crutches in Normal Mode
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
 
-    " Remove newbie crutches in Visual Mode
-    vnoremap <Down> <Nop>
-    vnoremap <Left> <Nop>
-    vnoremap <Right> <Nop>
-    vnoremap <Up> <Nop>
+" Remove newbie crutches in Visual Mode
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
 EOF
 }
 
@@ -163,6 +163,9 @@ set_ssh_and_git(){
 
     eval `ssh-agent`
     git config --global core.autocrlf false
+    git config --global user.name "Pavel Malinov"
+    git config --global user.email "pavel.malinov@softwareag.com"
+    git config --global core.editor "vim"
 
     ssh-add /root/.ssh/id_rsa
     ssh-keyscan  bitbucket.org >> ~/.ssh/known_hosts
@@ -185,10 +188,32 @@ install_golang() {
     wget --progress=bar:force https://dl.google.com/go/go1.12.linux-amd64.tar.gz
     tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     mkdir /root/go
+    cat <<'EOF'>> /root/.zshrc
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+EOF
+
   else
     echo "[$(date +%H:%M:%S)]: Golang seems to be installed already. Skipping."
   fi
 }
+
+install_node() {
+
+
+    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+    sudo apt-get -y install nodejs
+}
+
+set_up_chrony() {
+    apt install -y chrony
+    sed -i '/^#/ d' /etc/chrony/chrony.conf
+    sed -i '0,/pool*/iserver\ 169\.254\.169\.123\ prefer\ iburst\ minpoll\ 4\ maxpoll\ 4/' /etc/chrony/chrony.conf
+    systemctl enable chrony
+    systemctl restart chrony
+}
+
 
 main(){
     terraform_install
@@ -197,7 +222,9 @@ main(){
     vundle_install
     docker_install
     install_golang
+    install_node
     set_ssh_and_git
+    set_up_chrony
 
 }
 
