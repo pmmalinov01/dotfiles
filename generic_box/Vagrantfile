@@ -37,16 +37,19 @@ Vagrant.configure("2") do |config|
     inline: "git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
 
   # Copy in the default .zshrc config file
+  config.vm.provision "file", source: "C:\Users\pavm\Vagrantfile\zshrc.zsh-template", destination: "~/.zshrc"  
   config.vm.provision :shell, privileged: false,
-    inline: "cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc"
+    inline: "cp ./zshrc.zsh-template ~/.zshrc"
 
   # Change the vagrant user's shell to use zsh
-  config.vm.provision :shell,  privileged: true, inline: "chsh -s /bin/zsh vagrant"
-  config.vm.provision :shell,  privileged: true, inline: "sed -i '/plugins=*/iZSH_DISABLE_COMPFIX=true' /home/vagrant/.zshrc"
+  config.vm.provision :shell,  privileged: true, inline: "chsh -s /bin/zsh vagrant"  
   config.vm.provision :shell,  privileged: true, inline: "sudo ln -s /home/vagrant/.oh-my-zsh /root/.oh-my-zsh"
   config.vm.provision :shell,  privileged: true, inline: "sudo ln -s /home/vagrant/.zshrc /root/.zshrc"
   config.vm.provision :shell,  privileged: true, inline: "chsh -s /bin/zsh root"
   config.vm.provision :shell, path: "scripts/install.sh"
 
   ############################################################
+  config.vm.provision :shell, privileged: true, inline: "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k"
+  config.vm.provision "file", source: "C:\Users\pavm\Vagrantfile\pk10-template", destination: "~/.p10k.zsh" 
+  config.vm.provision :shell,  privileged: true, inline: "bash <(curl -s https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/install.sh"
 end

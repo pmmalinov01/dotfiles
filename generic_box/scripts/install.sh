@@ -15,8 +15,20 @@ if [[ $? == 127 ]]; then
 fi
 # install awscli and ebcli
 pip install -U awscli
-sudo apt install -y zip unzip
-sudo apt install build-essential cmake python3-dev python3-pip python3-tk python3-lxml python3-six -y
+
+apt_install_prerequisites(){
+    echo "[$(date +%H:%M:%S)]: Adding apt repositories..."
+    # Add repository for apt-fast
+    add-apt-repository -y ppa:apt-fast/stable 
+    echo "[$(date +%H:%M:%S)]: Running apt-get clean..."
+    apt-get clean
+    echo "[$(date +%H:%M:%S)]: Running apt-get update..."
+    apt-get -qq update
+    apt-get -qq install -y apt-fast
+    echo "[$(date +%H:%M:%S)]: Running apt-fast install..."
+    apt-fast -qq install -y jq whois build-essential uild-essential cmake python3-dev python3-pip python3-tk python3-lxml python3-six unzip -y
+
+}
 
 #terraform
 T_VERSION=$(/usr/local/bin/terraform -v | head -1 | cut -d ' ' -f 2 | tail -c +2)
@@ -44,6 +56,54 @@ kubectl_install() {
     mv ./kubectl /usr/local/bin/kubectl
 
     echo "source <(kubectl completion zsh)" /home/vagrant/.zshrc
+}
+
+install_neovim () {
+    apt remove vim -yes
+    apt autoremove
+    sudo apt-get install neovim -yes
+    apt-get install python-neovim
+    apt-get install python3-neovim
+    alia
+    cat << EOF > /root/.config/nvim/init.vim
+let g:solarized_termtrans = 1 " Pretty settings for colors
+let mapleader = ","
+
+
+colorscheme desert
+
+set bg=dark
+
+set shiftwidth=4 " indenting is 4 spaces not 8
+
+set path=**
+
+set expandtab
+
+set relativenumber
+
+set noswapfile
+
+set hidden
+
+let g:neetrw_banner = 0
+
+let g:netrw_liststyle = 3
+
+set shell=/usr/bin/zsh
+
+
+set hlsearch
+
+nnoremap <leader><space> :nohlsearch<CR>
+
+
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+EOF
+    
+
 }
 
 vundle_install() {
@@ -216,16 +276,17 @@ set_up_chrony() {
 
 
 main(){
+    apt_install_prerequisites
     terraform_install
     packer_install
     kubectl_install
-    vundle_install
+#   vundle_install
     docker_install
     install_golang
     install_node
     set_ssh_and_git
-    set_up_chrony
-
+    set_up_chrony   
+    
 }
 
 main

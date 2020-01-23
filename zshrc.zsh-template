@@ -1,0 +1,27 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+export ZSH=$HOME/.oh-my-zsh
+export GOROOT=/usr/local/go
+export GOPATH=/mnt/golib
+export GOPATH=$GOPATH:/mnt/greatestproject/gocode
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH:/usr/local/bin/pylint
+
+ZSH_THEME=powerlevel10k/powerlevel10k
+
+ZSH_DISABLE_COMPFIX=true
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+source <(kubectl completion zsh)
+
+ZSH_DISABLE_COMPFIX=true
+
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias vi="nvim"
+alias ll="ls -lah"
+alias gs='git status'
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
