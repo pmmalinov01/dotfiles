@@ -26,7 +26,7 @@ vim.opt.ignorecase = true                       -- ignore case in search pattern
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.pumheight = 10                          -- pop up menu height
-vim.opt.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
+vim.opt.showmode = true                        -- we don't need to see things like -- INSERT -- anymore
 --vim.opt.showtabline = 2                         -- always show tabs
 vim.opt.smartcase = true                        -- smart case
 vim.opt.smartindent = true                      -- make indenting smarter again
@@ -37,6 +37,7 @@ vim.opt.shiftwidth = 2
 vim.opt.updatetime = 300                        -- faster completion (4000ms default)
 --vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.wrap = true                             -- wrap lines if too long
+vim.termguicolors = true
 
 
 vim.cmd [[set iskeyword+=-]] -- deltes asdf-asdf (inlcudes dash`-`)

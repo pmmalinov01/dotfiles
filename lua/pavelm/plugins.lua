@@ -31,6 +31,7 @@ end
 
 -- Have packer use a popup window
 packer.init {
+  auto_clean = true,
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
@@ -45,18 +46,23 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/nvim-cmp'
   use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'morhetz/gruvbox'
   use 'nvim-telescope/telescope.nvim'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'
---  use 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use 'fatih/vim-go'
   use 'hashivim/vim-terraform'
+    -- cmp plugins
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
+  -- Snippets
+  use 'L3MON4D3/LuaSnip'
+  use "rafamadriz/friendly-snippets"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
