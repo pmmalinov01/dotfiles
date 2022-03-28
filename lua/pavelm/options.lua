@@ -4,7 +4,7 @@ vim.opt.backup = false                          -- creates a backup file
 vim.opt.wildmode = { "longest","list","full"}   -- Nice menu when typing :finm
 vim.opt.wildmenu = true
 vim.opt.wildignore = "**/.git/*"
-vim.opt.filetype = "on" 
+vim.opt.filetype = "on"
 vim.opt.filetype.plugin = "on"
 vim.opt.filetype.indent = "on"
 vim.opt.syntax = "on"
@@ -37,7 +37,11 @@ vim.opt.shiftwidth = 2
 vim.opt.updatetime = 300                        -- faster completion (4000ms default)
 --vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.wrap = true                             -- wrap lines if too long
+vim.opt.pumheight = 10                          -- pop up menu height
 vim.termguicolors = true
+
+
+vim.opt.shortmess:append "c"
 
 
 vim.cmd [[set iskeyword+=-]] -- deltes asdf-asdf (inlcudes dash`-`)
