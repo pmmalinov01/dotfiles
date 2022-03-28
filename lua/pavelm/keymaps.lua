@@ -1,6 +1,4 @@
 local opts = { noremap = true, silent = true }
-local term_ops = { silent = true }
-
 
 -- Shorted call to remap
 local keymap = vim.api.nvim_set_keymap
@@ -37,6 +35,15 @@ keymap("n", "<Right>", "<NOP>", opts)
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 
+-- Normal --
+-- Better window navigation
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
+
 -- Move text up and down
 keymap("v", "<ALT-j>", ":m .+1<CR>==", opts)
 keymap("v", "<ALT-k>", ":m .-2<CR>==", opts)
+
+
