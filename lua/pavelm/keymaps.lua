@@ -20,8 +20,8 @@ keymap("n", "<leader>fb", ":Telescope buffers<cr>", opts)
 -- Telescope help_tags
 keymap("n", "<leader>fh", ":Telescope help_tags<cr>", opts)
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-keymap("n", "<leader>eq", ":Lex 0<cr>", opts)
+keymap("n", "<leader>e", ":NvimTreeOpen<cr>", opts)
+keymap("n", "<leader>eq", ":NvimTreeClose<cr>", opts)
 
 -- No more Arrow KEys, learn not to use them
 keymap("n", "<Up>", "<NOP>", opts)
