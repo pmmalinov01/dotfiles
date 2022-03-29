@@ -23,7 +23,7 @@ vim.cmd [[
   augroup end
 ]]
 
--- Use a protected call so we don't error out on first use
+-- Use a protected call so we don"t error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
   return
@@ -45,15 +45,14 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use 'neovim/nvim-lspconfig' -- enable LSP
-  use 'williamboman/nvim-lsp-installer' -- simple to use LS installer
-  use 'nvim-lualine/lualine.nvim'
-  use 'kyazdani42/nvim-web-devicons'
-  use 'morhetz/gruvbox'
-  use 'nvim-telescope/telescope.nvim'
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-  use 'fatih/vim-go'
-  use 'hashivim/vim-terraform'
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use LS installer
+  use "nvim-lualine/lualine.nvim"
+  use "morhetz/gruvbox"
+  use "nvim-telescope/telescope.nvim"
+  use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview"}
+  use "fatih/vim-go"
+  use "hashivim/vim-terraform"
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
@@ -63,7 +62,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp" 
 
   -- Snippets
-  use 'L3MON4D3/LuaSnip'
+  use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
 
   -- Treesitter
@@ -71,8 +70,10 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
-  use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
+  use "kyazdani42/nvim-tree.lua"
+  use "kyazdani42/nvim-web-devicons"
+  -- Dashbaord
+  use "glepnir/dashboard-nvim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
