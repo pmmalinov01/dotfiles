@@ -46,4 +46,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("v", "<ALT-j>", ":m .+1<CR>==", opts)
 keymap("v", "<ALT-k>", ":m .-2<CR>==", opts)
 
+-- LSPSaga
+keymap("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
+keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
+
 

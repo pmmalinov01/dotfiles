@@ -76,6 +76,7 @@ return packer.startup(function(use)
   use "glepnir/dashboard-nvim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
+  use 'glepnir/lspsaga.nvim'
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
