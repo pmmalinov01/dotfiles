@@ -91,7 +91,6 @@ nvim_tree.setup {
     relativenumber = false,
   },
   quit_on_open = 0,
-  git_hl = 1,
   disable_window_picker = 0,
   root_folder_modifier = ":t",
   show_icons = {

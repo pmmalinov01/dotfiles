@@ -59,7 +59,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp" 
+  use "hrsh7th/cmp-nvim-lsp"
 
   -- Snippets
   use "L3MON4D3/LuaSnip"
@@ -76,7 +76,6 @@ return packer.startup(function(use)
   use "glepnir/dashboard-nvim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  use 'glepnir/lspsaga.nvim'
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
