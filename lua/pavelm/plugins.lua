@@ -49,6 +49,7 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use LS installer
   use "nvim-lualine/lualine.nvim"
   use "morhetz/gruvbox"
+  use 'folke/tokyonight.nvim'
   use "nvim-telescope/telescope.nvim"
   use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview"}
   use "fatih/vim-go"
@@ -69,6 +70,17 @@ return packer.startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+  }
+  -- Lua
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   }
   use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"

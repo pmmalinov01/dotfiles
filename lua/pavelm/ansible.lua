@@ -1,9 +1,3 @@
-local status_ok, ansible = pcall(require, "ansiblels")
-if not status_ok then
-  return
-end
+require'lspconfig'.anisbl.setup{
 
-
-ansible.setup {
-  on_attach = on_attach
 }

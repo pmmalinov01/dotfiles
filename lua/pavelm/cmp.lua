@@ -1,8 +1,4 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-  return
-end
-
+local cmp = require("cmp")
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   return
@@ -43,11 +39,13 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
+-- find more here: https://www.nerdfonts.com/cheat-sheet
 cmp.setup {
+--cmp.setup {
   window = {
     documentation = cmp.config.window.bordered(),
+
   },
   snippet = {
     expand = function(args)
@@ -121,10 +119,7 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
---  documentation = {
---    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
---  },
-  experimental = {
+    experimental = {
     ghost_text = true,
     native_menu = false,
   },
