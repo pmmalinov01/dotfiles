@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
+  use "glepnir/lspsaga.nvim"
 
   -- Snippets
   use "L3MON4D3/LuaSnip"
@@ -71,7 +72,6 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
-  -- Lua
   use {
     "folke/which-key.nvim",
     config = function()
@@ -84,8 +84,12 @@ return packer.startup(function(use)
   }
   use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
-  -- Dashbaord
-  use "glepnir/dashboard-nvim"
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

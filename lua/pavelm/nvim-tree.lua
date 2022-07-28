@@ -22,11 +22,6 @@ vim.g.nvim_tree_icons = {
 }
 
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
-end
-
 -- local tree_cb = nvim_tree_config.nvim_tree_callback
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
@@ -36,7 +31,7 @@ require("nvim-tree").setup({
       quit_on_open = true,
     }
   },
-  disable_netrw = true,
+  disable_netrw = false,
   hijack_netrw = true,
   open_on_setup = false,
   ignore_ft_on_setup = {

@@ -20,9 +20,6 @@ keymap("n", "<leader>fb", ":Telescope buffers<cr>", opts)
 -- Telescope help_tags
 keymap("n", "<leader>fh", ":Telescope help_tags<cr>", opts)
 
-keymap("n", "<leader>e", ":NvimTreeOpen<cr>", opts)
-keymap("n", "<leader>eq", ":NvimTreeClose<cr>", opts)
-
 -- No more Arrow KEys, learn not to use them
 keymap("n", "<Up>", "<NOP>", opts)
 keymap("n", "<Down>", "<NOP>", opts)
@@ -50,4 +47,5 @@ keymap("v", "<ALT-k>", ":m .-2<CR>==", opts)
 keymap("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
 keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
 
-
+--- Netrw
+keymap("n", "<leader>pv", ":Ex<CR>", opts)

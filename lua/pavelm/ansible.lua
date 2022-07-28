@@ -1,3 +1,1 @@
-require'lspconfig'.anisbl.setup{
-
-}
+require'lspconfig'.ansiblels.setup{}
