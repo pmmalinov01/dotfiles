@@ -43,30 +43,71 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
+
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
+    requires = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {'williamboman/mason.nvim'},           -- Optional
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},         -- Required
+      {'hrsh7th/cmp-nvim-lsp'},     -- Required
+      {'hrsh7th/cmp-buffer'},       -- Optional
+      {'hrsh7th/cmp-path'},         -- Optional
+      {'saadparwaiz1/cmp_luasnip'}, -- Optional
+      {'hrsh7th/cmp-nvim-lua'},     -- Optional
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},             -- Required
+      {'rafamadriz/friendly-snippets'}, -- Optional
+    }
+  }
+
+--  use { -- LSP Configuration & Plugins
+--    'neovim/nvim-lspconfig',
+--    requires = {
+--      -- Automatically install LSPs to stdpath for neovim
+--      'williamboman/mason.nvim',
+--      'williamboman/mason-lspconfig.nvim',
+--
+--      -- Useful status updates for LSP
+--      'j-hui/fidget.nvim',
+--
+--      -- Additional lua configuration, makes nvim stuff amazing
+--      'folke/neodev.nvim',
+--    },
+--  }
+  -- Git related plugins
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'lewis6991/gitsigns.nvim'
+
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use LS installer
   use "nvim-lualine/lualine.nvim"
-  use "morhetz/gruvbox"
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  --use "morhetz/gruvbox"
   use 'folke/tokyonight.nvim'
   use "nvim-telescope/telescope.nvim"
-  use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview"}
   use "fatih/vim-go"
   use "hashivim/vim-terraform"
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
+--  use "hrsh7th/nvim-cmp" -- The completion plugin
+--  use "hrsh7th/cmp-buffer" -- buffer completions
+--  use "hrsh7th/cmp-path" -- path completions
+--  use "hrsh7th/cmp-cmdline" -- cmdline completions
+--  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+--  use "hrsh7th/cmp-nvim-lsp"
 
   use "glepnir/lspsaga.nvim"
 
   -- Snippets
-  use "L3MON4D3/LuaSnip"
-  use "rafamadriz/friendly-snippets"
+--  use "L3MON4D3/LuaSnip"
+--  use "rafamadriz/friendly-snippets"
 
   -- Treesitter
   use {

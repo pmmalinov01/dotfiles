@@ -22,6 +22,7 @@ vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
 vim.opt.hlsearch = false                         -- highlight all matches on previous search pattern
+vim.o.breakindent = true
 vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.scrolloff = 8                           -- is one of my fav
@@ -41,7 +42,7 @@ vim.termguicolors = true
 vim.opt.guicursor = ""
 vim.opt.incsearch = true
 -- Show signs in the number column
-vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "yes"
 
 vim.opt.shortmess:append "c"
 
@@ -55,6 +56,9 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 vim.cmd([[let g:terraform_fmt_on_save=1]])
 vim.cmd([[let g:terraform_align=1]])
 
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
