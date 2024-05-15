@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=\sExec=env QT_QPA_PLATFORM=xcb flatpak run com.github.hluk.copyq 
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=CopyQ
+Name=CopyQ
+Comment[en_US]=
+Comment=
