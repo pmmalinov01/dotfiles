@@ -130,3 +130,5 @@ alias ll='ls -lah'
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+

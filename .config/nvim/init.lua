@@ -742,6 +742,8 @@ vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist"
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 vim.keymap.set("i", "jj", "<Esc>",{noremap = true, silent = true})
 
+vim.keymap.set("n", "<leader>h", function () vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+
 local util = require "lspconfig.util"
 local lspconfig = require("lspconfig")
 
