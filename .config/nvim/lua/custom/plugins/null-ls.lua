@@ -9,6 +9,8 @@ return {
       sources = {
         null_ls.builtins.formatting.gofumpt,
         null_ls.builtins.formatting.goimports_reviser,
+        null_ls.builtins.diagnostics.actionlint,
+        null_ls.builtins.diagnostics.terraform_validate,
       },
       on_attach = function (client, bufnr)
         if client.supports_method("textDocument/formatting") then

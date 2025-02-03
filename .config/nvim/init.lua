@@ -76,6 +76,7 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+   'nvimtools/none-ls.nvim',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -579,6 +580,7 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
    gopls = {},
+   yamlls = {},
    --pyright = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -734,12 +736,6 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 -- Lua
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 vim.keymap.set("i", "jj", "<Esc>",{noremap = true, silent = true})
 
 vim.keymap.set("n", "<leader>h", function () vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
@@ -765,3 +761,25 @@ lspconfig.gopls.setup {
   }
 }
 
+-- Start the GH actions language server
+-- Requries `npm i -g @strozw/github-actions-languageserver`
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "github-actions-workflow",
+    callback = function()
+      vim.lsp.start({
+        name = "gh-actions-ls",
+        filetypes = { "github-actions-workflow" },
+        cmd = { "npx", "github-actions-languageserver", "--stdio" },
+        root_dir = vim.fn.getcwd(),
+        init_options = {
+          sessionToken = "",
+        },
+        settings = {},
+      })
+    end,
+  })
+
+  -- Set specify yaml files to be of type github-actions-workflow
+  vim.cmd("autocmd BufRead,BufNewFile *.github/workflows/*.yaml set filetype=github-actions-workflow")
+  vim.cmd("autocmd BufRead,BufNewFile *.github/workflows/*.yml set filetype=github-actions-workflow")
+  vim.treesitter.language.register("yaml", "github-actions-workflow")
