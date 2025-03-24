@@ -713,7 +713,7 @@ vim.opt.guicursor = ""
 vim.opt.incsearch = true
 -- Show signs in the number column
 vim.opt.signcolumn = "yes"
-
+vim.opt.showmode = false
 vim.opt.shortmess:append "c"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
