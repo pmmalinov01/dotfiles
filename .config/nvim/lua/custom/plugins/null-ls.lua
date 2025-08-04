@@ -11,6 +11,10 @@ return {
         null_ls.builtins.formatting.goimports_reviser,
         null_ls.builtins.diagnostics.actionlint,
         null_ls.builtins.diagnostics.terraform_validate,
+        null_ls.builtins.diagnostics.cfn_lint,
+        null_ls.builtins.formatting.terraform_fmt,
+        null_ls.builtins.formatting.terragrunt_fmt,
+
       },
       on_attach = function (client, bufnr)
         if client.supports_method("textDocument/formatting") then
