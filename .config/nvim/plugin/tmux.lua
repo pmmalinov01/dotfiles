@@ -1,8 +1,8 @@
 vim.pack.add({
-  {
-    src = "https://github.com/christoomey/vim-tmux-navigator",
-    version = "master"
-  }
+	{
+		src = "https://github.com/christoomey/vim-tmux-navigator",
+		version = "master",
+	},
 })
 
 -- No require() needed! Just set up the keymaps directly:

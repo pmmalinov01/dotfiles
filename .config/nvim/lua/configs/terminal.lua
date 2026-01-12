@@ -1,0 +1,6 @@
+vim.keymap.set("n", "<leader>st", function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+end, { desc = "Open terminal" })
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>")

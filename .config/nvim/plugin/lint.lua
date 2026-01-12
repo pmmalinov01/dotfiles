@@ -5,6 +5,7 @@ require("lint").linters_by_ft = {
 	go = { "golangcilint" },
 	bash = { "bash" },
 	cfnlint = { "cfn_lint" },
+	yaml = { "yamllint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
