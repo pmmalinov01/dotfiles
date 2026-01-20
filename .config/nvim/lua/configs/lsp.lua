@@ -8,7 +8,7 @@
 -- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
 vim.lsp.enable({
 	"lua_ls",
-	"golsp",
+	"gopls",
 	"gh_actions_ls",
 	"terraform_ls",
 	"bash",
@@ -16,6 +16,7 @@ vim.lsp.enable({
 	"helm_ls",
 	"jsonls",
 	"docker_ls",
+	"python_ls",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
