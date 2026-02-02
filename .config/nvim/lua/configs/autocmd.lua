@@ -20,11 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.cmd("autocmd BufRead,BufNewFile *.github/workflows/*.yaml set filetype=github-actions-workflow")
 vim.cmd("autocmd BufRead,BufNewFile *.github/workflows/*.yml set filetype=github-actions-workflow")
 --vim.treesitter.language.register("yaml", "github-actions-workflow")
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false
-  }
-)
 vim.cmd [[set iskeyword+=-]] -- deltes asdf-asdf (inlcudes dash`-`)
 vim.cmd [[set ma]]
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])

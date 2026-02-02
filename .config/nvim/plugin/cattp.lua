@@ -8,12 +8,13 @@ require("catppuccin").setup({
 	background = {
 		dark = "mocha",
 	},
+	enabled = true,
 	-- synced with wezterm/kitty
 	transparent_background = true,
 	integrations = {
 		-- Enable nvim-cmp highlight groups (used for completion kind icons)
 		cmp = false,
-		blink_cmp = false,
+		blink_cmp = true,
 		native_lsp = {
 			enabled = true,
 			underlines = {
@@ -25,5 +26,6 @@ require("catppuccin").setup({
 		},
 	},
 })
+
 -- setup must be called before loading
 vim.cmd.colorscheme("catppuccin-frappe")
